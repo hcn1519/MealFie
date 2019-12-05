@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:intl/intl.dart';
+import 'package:image_picker_saver/image_picker_saver.dart';
 
 class TakePictureScreen extends StatefulWidget {
 
@@ -95,23 +96,19 @@ class TakePictureScreenState extends State<TakePictureScreen> {
           child: FloatingActionButton(
             child: Icon(Icons.camera_alt),
             onPressed: () async {
-              try {
+
                 await _initializeControllerFuture;
                 final path = join(
                   (await getTemporaryDirectory()).path,
                   '${DateTime.now()}.png',
                 );
+                // 촬영
                 await _controller.takePicture(path);
 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DisplayPictureScreen(imagePath: path),
-                  ),
-                );
-              } catch (e) {
-                print(e);
-              }
+                File imageFile = File('$path');
+                // 이미지를 사진 앱에 저장
+                await ImagePickerSaver.saveFile(fileData: await imageFile.readAsBytes());
+
             },
           ),
         ),

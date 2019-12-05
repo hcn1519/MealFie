@@ -43,5 +43,7 @@
 	<false/>
 	<key>NSCameraUsageDescription</key>
 	<string>카메라에 접근하려고 합니다.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>사진에 접근하려고 합니다.</string>
 </dict>
 </plist>
