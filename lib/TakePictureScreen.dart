@@ -46,7 +46,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   }
 
   void startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer){
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
         var now = new DateTime.now();
         var dateStr = DateFormat("yyyy년 M월 dd일 HH시 mm분 ss초").format(now);
